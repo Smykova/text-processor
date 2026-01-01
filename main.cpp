@@ -15,7 +15,7 @@ std::vector<std::string> readLinesFromFile(const std::string& filename) {
     } else {
         std::cerr << "Error: cannot open file " << filename << std::endl;
     }
-    // ���������� �����
+    // Îòëàäî÷íûé âûâîä
     std::cout << "[DEBUG] Lines read: " << lines.size() << std::endl;
     for (const auto& line : lines) {
         std::cout << "[DEBUG] " << line << std::endl;
@@ -24,15 +24,26 @@ std::vector<std::string> readLinesFromFile(const std::string& filename) {
 }
 
 void printLines(const std::vector<std::string>& lines) {
-    // TODO
+    for (const auto& line : lines) {
+        std::cout << line << std::endl;
+    }
 }
 
 void writeLinesToFile(const std::vector<std::string>& lines, const std::string& filename) {
-    // TODO
+    std::ofstream file(filename);
+    if (file.is_open()) {
+        for (const auto& line : lines) {
+            file << line << std::endl;
+        }
+        file.close();
+    } else {
+        std::cerr << "Error: cannot open file for writing " << filename << std::endl;
+    }
 }
 
 int main() {
-    std::vector<std::string> lines = readLinesFromFile("input.txt");
+    // Âðåìåííûé òåñòîâûé êîä (ïîòîì óäàëèøü!)
+    std::vector<std::string> lines = {"Test line 1", "Test line 2", "Test line 3"};
     printLines(lines);
     writeLinesToFile(lines, "output.txt");
     return 0;
