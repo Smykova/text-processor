@@ -5,7 +5,21 @@
 
 std::vector<std::string> readLinesFromFile(const std::string& filename) {
     std::vector<std::string> lines;
-    // TODO: позже будет реализовано
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            lines.push_back(line);
+        }
+        file.close();
+    } else {
+        std::cerr << "Error: cannot open file " << filename << std::endl;
+    }
+    // ГЋГІГ«Г Г¤Г®Г·Г­Г»Г© ГўГ»ГўГ®Г¤
+    std::cout << "[DEBUG] Lines read: " << lines.size() << std::endl;
+    for (const auto& line : lines) {
+        std::cout << "[DEBUG] " << line << std::endl;
+    }
     return lines;
 }
 
@@ -28,7 +42,7 @@ void writeLinesToFile(const std::vector<std::string>& lines, const std::string& 
 }
 
 int main() {
-    // Временный тестовый код (потом удалишь!)
+    // Г‚Г°ГҐГ¬ГҐГ­Г­Г»Г© ГІГҐГ±ГІГ®ГўГ»Г© ГЄГ®Г¤ (ГЇГ®ГІГ®Г¬ ГіГ¤Г Г«ГЁГёГј!)
     std::vector<std::string> lines = {"Test line 1", "Test line 2", "Test line 3"};
     printLines(lines);
     writeLinesToFile(lines, "output.txt");
