@@ -3,21 +3,32 @@
 #include <string>
 #include <fstream>
 
-// Функция 1: чтение строк из файла в вектор
 std::vector<std::string> readLinesFromFile(const std::string& filename) {
     std::vector<std::string> lines;
-    // TODO: реализовать чтение из файла
+    std::ifstream file(filename);
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            lines.push_back(line);
+        }
+        file.close();
+    } else {
+        std::cerr << "Error: cannot open file " << filename << std::endl;
+    }
+    // Отладочный вывод
+    std::cout << "[DEBUG] Lines read: " << lines.size() << std::endl;
+    for (const auto& line : lines) {
+        std::cout << "[DEBUG] " << line << std::endl;
+    }
     return lines;
 }
 
-// Функция 2: вывод строк на экран
 void printLines(const std::vector<std::string>& lines) {
-    // TODO: реализовать вывод на экран
+    // TODO
 }
 
-// Функция 3: запись строк в файл
 void writeLinesToFile(const std::vector<std::string>& lines, const std::string& filename) {
-    // TODO: реализовать запись в файл
+    // TODO
 }
 
 int main() {
